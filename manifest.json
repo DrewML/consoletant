@@ -1,0 +1,24 @@
+{
+    "name": "Consoletant",
+    "version": "0.1.0",
+    "description": "A better \"console\" for the Chrome Developer Tools",
+    "manifest_version": 2,
+    "devtools_page": "devtools.html",
+    "permissions": [
+        "experimental",
+        "tabs",
+        "http://*/*",
+        "https://*/*"
+    ],
+    "background": {
+        "scripts": ["background.js"],
+        "peristent": false
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["console-hook.js"],
+            "run_at": "document_start"
+        }
+    ]
+}
