@@ -1,7 +1,25 @@
-html,
-body {
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    padding: 0;
+.log-row__time,
+.log-row__message,
+.log-row__location {
+    display: inline-block;
+}
+
+.log-row {
+    border-bottom: 1px solid #F4F2F2;
+    line-height: 22px;
+    padding: 0 .5%;
+}
+
+.log-row__time {
+    width: 7%;
+    color: #AEAEAE;
+}
+
+.log-row__message {
+    width: 82%;
+}
+
+.log-row__location {
+    font-style: italic;
+    float: right;
 }

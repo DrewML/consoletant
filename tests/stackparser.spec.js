@@ -13,10 +13,9 @@ test('Correct line/column info', t => {
     t.is(firstLine.column, 9);
 });
 
-// TODO: Use stack trace with actual file names
 test('Correct filename', t => {
-    const [firstLine] = parse(stack.noCallContext);
-    t.is(firstLine.fileName, 'anonymous');
+    const [firstLine] = parse(stack.withFilePath);
+    t.is(firstLine.fileName, 'http://redux.js.org/gitbook/app.js');
 });
 
 test('Correct call context', t => {

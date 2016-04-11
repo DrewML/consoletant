@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
-import LogGrid from '../LogGrid';
+import LogList from '../LogList';
 
 export default function App({ logs }) {
-    return <LogGrid logs={logs} />;
+    return <LogList logs={logs} />;
 }
 
 App.propTypes = {

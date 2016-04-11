@@ -9,7 +9,7 @@ connection.postMessage({
 
 const listeners = new Set();
 
-connection.onMessage.addListener(function(...args) {
+connection.onMessage.addListener((...args) => {
     for (const listener of listeners) {
         listener(...args);
     }

@@ -17,21 +17,21 @@ function stackLineToPieces(stackLine) {
 }
 
 function fileName(stackLine) {
-    const fileNamePattern = /at [\w.]*\s*\(?[<(]([\w.]+)>?\)?:/;
+    const fileNamePattern = /at [\w.]*\s*\(?[<(]([\w.:/-]+)>?\)?:/i;
     const [, fileName] = (fileNamePattern.exec(stackLine) || []);
 
     return fileName
 }
 
 function callContext(stackLine) {
-    const contextPattern = /at ([\w.]+)/;
+    const contextPattern = /at ([\w.]+)/i;
     const [, path = ''] = (contextPattern.exec(stackLine) || []);
 
     return path;
 }
 
 function lineAndColumn(lineStr) {
-    const lineColumnPattern = /:(\d+):(\d+)\)?/;
+    const lineColumnPattern = /:(\d+):(\d+)\)?/i;
     const [, line, column] = (lineColumnPattern.exec(lineStr) || []);
 
     return {

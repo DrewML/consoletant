@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react';
 
 export default function LogRow({ callInfo, args, time }) {
     return (
-        <tr>
-            <td>{time}</td>
-            <td>{JSON.stringify(args)}</td>
-            <td>
+        <div className="log-row">
+            <div className="log-row__time">{time}</div>
+            <div className="log-row__message">{args.join(' ')}</div>
+            <div className="log-row__location">
                 {callInfo.fileName}:{callInfo.line}:{callInfo.column}
-            </td>
-        </tr>
+            </div>
+        </div>
     );
 }
 
