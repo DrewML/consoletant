@@ -7,7 +7,7 @@ export default function LogList({ logs }) {
             {logs.map(log =>
                 <li key={log.id}>
                     <LogRow
-                        callInfo={log.callInfo}
+                        caller={log.caller}
                         args={log.args}
                         time={log.time}
                     />

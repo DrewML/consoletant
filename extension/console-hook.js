@@ -1,8 +1,12 @@
+let nextId = 0;
+
 window.addEventListener('message', ({ data }) => {
     if (data && data.consoletant) {
         chrome.runtime.sendMessage({
             stack: data.stack,
-            args: data.args
+            args: data.args,
+            id: nextId++,
+            time: new Date().toLocaleTimeString()
         });
     }
 });

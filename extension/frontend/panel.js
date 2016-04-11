@@ -9,26 +9,22 @@ import parser from './stackparser';
 import { onMessage } from './connection';
 
 const store = createStore(consoleApp);
-let nextId = 0;
 
-onMessage(({ stack, args }) => {
-    const item = {
+onMessage(({ stack, args, id, time }) => {
+    const parsedStack = parser(stack);
+    const logItem = {
+        caller: parsedStack[0],
+        stack: parsedStack,
+        time,
         args,
-        callInfo: parser(stack)[0],
-        time: new Date().toLocaleTimeString(),
-        id: nextId++
+        id
     };
-    store.dispatch(addLogItem(item));
-    renderApp();
+    store.dispatch(addLogItem(logItem));
 });
 
-renderApp();
-
-function renderApp() {
-    return render(
-        <Provider store={store}>
-            <App />
-        </Provider>,
-        document.querySelector('.app')
-    );
-}
+render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.querySelector('.app')
+);
