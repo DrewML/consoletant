@@ -1,14 +1,26 @@
-import stackparser from './stackparser';
+import { render } from 'react-dom';
+import React from 'react';
+import App from './components/App';
+import parser from './stackparser';
+import { onMessage } from './connection';
 
-const connection = chrome.runtime.connect({
-    name: 'devtools_page'
+const messages = [];
+
+onMessage(({ stack, args }) => {
+    messages.push({
+        args,
+        callInfo: parser(stack)[0],
+        time: new Date().toLocaleTimeString()
+    });
+    renderApp(messages);
+    console.log(messages[messages.length - 1].callInfo);
 });
 
-connection.postMessage({
-    name: 'init',
-    tabId: chrome.devtools.inspectedWindow.tabId
-});
+renderApp(messages);
 
-connection.onMessage.addListener(function({ stack, args }) {
-    document.body.innerHTML = `${stack}\n${document.body.innerHTML}\n`;
-});
+function renderApp(logs) {
+    return render(
+        <App logs={logs} />,
+        document.querySelector('.app')
+    );
+}

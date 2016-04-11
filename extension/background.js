@@ -3,6 +3,9 @@ const connections = new Map();
 chrome.runtime.onConnect.addListener(port => {
     const extensionListener = (message, sender, sendResponse) => {
         if (message.name === 'init') {
+            // TODO: Send message queue from content script
+            // on first connection, if it exists. This will
+            // catch messages fired before the extension was opened
             connections.set(message.tabId, port);
         }
     };
