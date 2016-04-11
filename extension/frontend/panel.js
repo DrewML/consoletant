@@ -1,26 +1,34 @@
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import React from 'react';
-import App from './components/App';
+import App from './containers/App';
+import consoleApp from './reducers';
+import { addLogItem } from './actions';
 import parser from './stackparser';
 import { onMessage } from './connection';
 
-const messages = [];
+const store = createStore(consoleApp);
+let nextId = 0;
 
 onMessage(({ stack, args }) => {
-    messages.push({
+    const item = {
         args,
         callInfo: parser(stack)[0],
-        time: new Date().toLocaleTimeString()
-    });
-    renderApp(messages);
-    console.log(messages[messages.length - 1].callInfo);
+        time: new Date().toLocaleTimeString(),
+        id: nextId++
+    };
+    store.dispatch(addLogItem(item));
+    renderApp();
 });
 
-renderApp(messages);
+renderApp();
 
-function renderApp(logs) {
+function renderApp() {
     return render(
-        <App logs={logs} />,
+        <Provider store={store}>
+            <App />
+        </Provider>,
         document.querySelector('.app')
     );
 }
