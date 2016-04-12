@@ -1,13 +1,24 @@
 import React, { PropTypes } from 'react';
+import { ObjectInspector } from 'react-inspector';
 
 // TODO: location uri should open sources panel
 // https://developer.chrome.com/extensions/devtools_panels#method-openResource
 
 export default function LogRow({ caller, args, time }) {
+    const messageDisplay = (args) => {
+        return (
+            <div>
+                {args.map(arg =>
+                    typeof arg === 'object' ? <ObjectInspector data={arg} /> : <span>{arg}</span>
+                )}
+            </div>
+        );
+    };
+
     return (
         <div className="log-row">
             <div className="log-row__time">{time}</div>
-            <div className="log-row__message">{args.join(' ')}</div>
+            <div className="log-row__message">{messageDisplay(args)}</div>
             <div className="log-row__location">
                 {caller.fileName}:{caller.line}:{caller.column}
             </div>
