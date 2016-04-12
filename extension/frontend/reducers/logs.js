@@ -5,6 +5,10 @@ const logs = (state = [], action) => {
                 ...state,
                 action.log
             ];
+        case 'FILTER_BY_REGEX':
+            return state.filter(log => (
+                action.pattern.test(log.args.join(' '))
+            ));
         default:
             return state;
     }

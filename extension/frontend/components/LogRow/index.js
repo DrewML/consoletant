@@ -1,5 +1,8 @@
 import React, { PropTypes } from 'react';
 
+// TODO: location uri should open sources panel
+// https://developer.chrome.com/extensions/devtools_panels#method-openResource
+
 export default function LogRow({ caller, args, time }) {
     return (
         <div className="log-row">

@@ -4,3 +4,10 @@ export const addLogItem = log => {
         log
     };
 };
+
+export const filterByRegex = pattern => {
+    return {
+        type: 'FILTER_BY_REGEX',
+        pattern: new RegExp(pattern)
+    }
+};
