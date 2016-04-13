@@ -12,19 +12,29 @@ window.addEventListener('message', ({ data }) => {
 });
 
 runFnInPage(function() {
-    const oldLog = console.log;
-    const onLog = (stack, args) => {
+    const onLog = (type, stack, args) => {
         window.postMessage({
             consoletant: true,
             stack,
-            args
+            args,
+            type
         }, '*');
     };
 
-    console.log = function(...args) {
-        oldLog.apply(this, args);
-        onLog(new Error().stack, args);
-    };
+    const targets = [
+        'log',
+        'warn',
+        'info',
+        'debug'
+    ];
+
+    const oldMethods = targets.forEach(target => {
+        const original = console[target]
+        console[target] = function(...args) {
+            original.apply(this, args);
+            onLog(target, new Error().stack, args);
+        };
+    });
 });
 
 function runFnInPage(fn) {
