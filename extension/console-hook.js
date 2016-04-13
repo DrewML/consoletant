@@ -29,7 +29,7 @@ runFnInPage(function() {
     ];
 
     const oldMethods = targets.forEach(target => {
-        const original = console[target]
+        const original = console[target];
         console[target] = function(...args) {
             original.apply(this, args);
             onLog(target, new Error().stack, args);
