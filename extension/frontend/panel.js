@@ -2,7 +2,8 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import React from 'react';
-import App from './containers/App';
+import LogList from './containers/Logs';
+import MessageTypeFilter from './containers/MessageTypeFilter';
 import consoleApp from './reducers';
 import { addLogItem } from './actions';
 import parser from './stackparser';
@@ -25,7 +26,10 @@ onMessage(({ stack, args, id, time, type }) => {
 
 render(
     <Provider store={store}>
-        <App />
+        <section>
+            <MessageTypeFilter />
+            <LogList />
+        </section>
     </Provider>,
     document.querySelector('.app')
 );

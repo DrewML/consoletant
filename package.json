@@ -4,7 +4,7 @@
   "description": "A better \"console\" for the Chrome Developer Tools",
   "main": "index.js",
   "scripts": {
-    "bundle": "browserify extension/frontend/panel.js -o dist/frontend/panel.js -t babelify",
+    "bundle": "browserify extension/frontend/panel.js -o dist/frontend/panel.js -t babelify -d",
     "clean": "rm -rf dist && mkdir -p dist/frontend",
     "copy": "cp -r extension/* dist",
     "styles": "cat extension/frontend/components/*/*.css > dist/frontend/app.css",

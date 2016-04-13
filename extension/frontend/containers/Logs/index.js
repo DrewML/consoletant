@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import App from '../../components/App';
+import LogList from '../../components/LogList';
 
 const mapStateToProps = state => {
     return {
@@ -7,8 +7,8 @@ const mapStateToProps = state => {
     };
 };
 
-const ContainerApp = connect(
+const Logs = connect(
     mapStateToProps
-)(App);
+)(LogList);
 
-export default ContainerApp;
+export default Logs;

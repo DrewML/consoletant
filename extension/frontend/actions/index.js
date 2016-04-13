@@ -11,3 +11,17 @@ export const filterByRegex = pattern => {
         pattern: new RegExp(pattern)
     }
 };
+
+export const addMessageTypeFilter = logType => {
+    return {
+        type: 'ADD_MESSAGE_TYPE_FILTER',
+        logType
+    };
+}
+
+export const removeMessageTypeFilter = logType => {
+    return {
+        type: 'REMOVE_MESSAGE_TYPE_FILTER',
+        logType
+    }
+};
