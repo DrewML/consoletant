@@ -10,14 +10,15 @@ import { onMessage } from './connection';
 
 const store = createStore(consoleApp);
 
-onMessage(({ stack, args, id, time }) => {
+onMessage(({ stack, args, id, time, type }) => {
     const parsedStack = parser(stack);
     const logItem = {
         caller: parsedStack[0],
         stack: parsedStack,
         time,
         args,
-        id
+        id,
+        type
     };
     store.dispatch(addLogItem(logItem));
 });

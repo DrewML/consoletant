@@ -5,6 +5,7 @@ window.addEventListener('message', ({ data }) => {
         chrome.runtime.sendMessage({
             stack: data.stack,
             args: data.args,
+            type: data.type,
             id: nextId++,
             time: new Date().toLocaleTimeString()
         });
@@ -25,7 +26,8 @@ runFnInPage(function() {
         'log',
         'warn',
         'info',
-        'debug'
+        'debug',
+        'error'
     ];
 
     const oldMethods = targets.forEach(target => {

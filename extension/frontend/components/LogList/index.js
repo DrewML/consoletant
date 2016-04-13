@@ -10,6 +10,7 @@ export default function LogList({ logs }) {
                         caller={log.caller}
                         args={log.args}
                         time={log.time}
+                        type={log.type}
                     />
                 </li>
             )}

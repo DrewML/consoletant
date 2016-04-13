@@ -34,6 +34,7 @@
     ]
   },
   "dependencies": {
+    "classnames": "^2.2.3",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-inspector": "^1.0.0-alpha.3"
