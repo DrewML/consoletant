@@ -5,13 +5,6 @@ export const addLogItem = log => {
     };
 };
 
-export const filterByRegex = pattern => {
-    return {
-        type: 'FILTER_BY_REGEX',
-        pattern: new RegExp(pattern)
-    }
-};
-
 export const addMessageTypeFilter = logType => {
     return {
         type: 'ADD_MESSAGE_TYPE_FILTER',
@@ -24,4 +17,11 @@ export const removeMessageTypeFilter = logType => {
         type: 'REMOVE_MESSAGE_TYPE_FILTER',
         logType
     }
+};
+
+export const addRegexFilter = pattern => {
+    return {
+        type: 'ADD_REGEX_FILTER',
+        pattern: pattern
+    };
 };

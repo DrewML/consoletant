@@ -4,6 +4,7 @@ import { createStore } from 'redux';
 import React from 'react';
 import LogList from './containers/Logs';
 import MessageTypeFilter from './containers/MessageTypeFilter';
+import MessageRegexFilter from './containers/MessageRegexFilter';
 import consoleApp from './reducers';
 import { addLogItem } from './actions';
 import parser from './stackparser';
@@ -28,6 +29,7 @@ render(
     <Provider store={store}>
         <section>
             <MessageTypeFilter />
+            <MessageRegexFilter />
             <LogList />
         </section>
     </Provider>,

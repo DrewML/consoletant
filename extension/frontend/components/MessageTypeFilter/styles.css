@@ -12,6 +12,11 @@
 
 .message-type-filter__btn:hover {
     background: #FFF;
+    cursor: pointer;
+}
+
+.message-type-filter__btn:active {
+    background: #CCC;
 }
 
 .message-type-filter__btn:focus, 

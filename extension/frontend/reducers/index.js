@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import logs from './logs';
-import typeFilters from './type-filters';
+import filters from './filters';
 
 const consoleApp = combineReducers({
     logs,
-    typeFilters
+    filters
 });
 
 export default consoleApp;
