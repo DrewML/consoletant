@@ -1,3 +1,4 @@
+import './styles.css';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { ObjectInspector } from 'react-inspector';

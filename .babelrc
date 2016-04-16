@@ -4,7 +4,6 @@
         "react"
     ],
     "plugins": [
-        "transform-object-rest-spread",
-        "array-includes"
+        "transform-object-rest-spread"
     ]
 }

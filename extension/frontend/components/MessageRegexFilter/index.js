@@ -1,3 +1,4 @@
+import './styles.css';
 import React, { PropTypes, Component } from 'react';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
