@@ -1,61 +1,32 @@
 import test from 'ava';
-import deepClone from '../extension/frontend/utils/deep-clone';
+import clean from '../extension/frontend/utils/clean';
 
-test('False when obj param is not an object', t => {
-    const cloned = deepClone(null);
-    t.false(cloned);
-});
-
-test('Does not return reference to existing object', t => {
-    const example = {};
-    t.not(deepClone(example), example);
-});
-
-test('Clone shallow object with primitives', t => {
-    const example = {
+test('Clones object with primitives', t => {
+    const obj = {
         a: 1,
-        b: '2',
+        b: true,
         c: undefined,
         d: null,
-        e: false
+        e: {
+            f: 'ohhaaayyy'
+        }
     };
-
-    const cloned = deepClone(example);
-    t.deepEqual(example, cloned);
+    t.deepEqual(clean(obj), obj);
+    t.not(clean(obj), obj);
 });
 
-test('Clone object with primitives and nested basic objects', t => {
-    const example = {
-        a: {
-            b: {
-                c: 'ohhai'
-            }
-        }
-    }
-
-    const cloned = deepClone(example);
-    t.deepEqual(example, cloned);
+test('Cleans function', t => {
+    const obj = {
+        a: function test() {}
+    };
+    t.is(clean(obj).a.cleaned, obj.a.toString());
 });
 
-test('Can replace values with anything except undefined', t => {
-    const example = {
-        a: {
-            b: 'haha',
-            c: false,
-            d: {}
-        }
+test('Cleans regular expression', t => {
+    const obj = {
+        a: new RegExp('hello.+'),
+        b: /hello.+/
     };
-    const expected = {
-        a: {
-            b: 'replaced',
-            c: true,
-            d: null
-        }
-    };
-
-    const cloned = deepClone(example, (key, val) => {
-        if (val === 'haha') return 'replaced';
-        if (val === false) return true;
-        if (key === 'd') return null;
-    });
+    t.is(clean(obj).a.cleaned, obj.a.toString());
+    t.is(clean(obj).b.cleaned, obj.b.toString());
 });
