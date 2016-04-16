@@ -1,8 +1,7 @@
 let nextId = 0;
 
 window.addEventListener('message', ({ data }) => {
-    // TODO: Determine why chrome.runtime.sendMessage is occasionally non-existent
-    if (data && data.consoletant && chrome.runtime.sendMessage) {
+    if (data && data.consoletant) {
         chrome.runtime.sendMessage({
             stack: data.stack,
             args: data.args,
@@ -11,6 +10,18 @@ window.addEventListener('message', ({ data }) => {
             time: new Date().toLocaleTimeString()
         });
     }
+});
+
+window.addEventListener('error', data => {
+    chrome.runtime.sendMessage({
+        messageType: 'uncaughtException',
+        data: {
+            column: data.colno,
+            line: data.lineco,
+            filename: data.filename,
+            message: data.message
+        }
+    });
 });
 
 runFnInPage(function() {
