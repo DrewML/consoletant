@@ -6,8 +6,9 @@
     background: #F3F3F3;
     border: 0;
     margin-right: 4px;
-    padding: 2px 9px;
+    padding: 3px 9px;
     font-size: 12px;
+    border-radius: 3px;
 }
 
 .message-type-filter__btn_selected {

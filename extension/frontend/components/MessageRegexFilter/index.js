@@ -1,6 +1,5 @@
 import './styles.css';
 import React, { PropTypes, Component } from 'react';
-import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 
 export default class MessageRegexFilter extends Component {
@@ -19,6 +18,7 @@ export default class MessageRegexFilter extends Component {
         return (
             <div className="message-regex-filter">
                 <input
+                    className="message-regex-filter__input"
                     type="text"
                     placeholder={placeholder}
                     value={this.state.value}

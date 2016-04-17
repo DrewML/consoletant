@@ -1,4 +1,20 @@
 .filter-bar {
     background-color: #f3f3f3;
     padding: 0.3%;
+    border-bottom: 1px solid #dadada;
+}
+
+.filter-bar__clear {
+    background: transparent;
+    border: none;
+}
+
+.filter-bar__clear:hover {
+    color: #737373;
+    cursor: pointer;
+}
+
+.filter-bar__clear:focus,
+.filter-bar__clear:active {
+    outline: 0;
 }

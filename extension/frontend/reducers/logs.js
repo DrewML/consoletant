@@ -5,6 +5,8 @@ const logs = (state = [], action) => {
                 ...state,
                 action.log
             ];
+        case 'CLEAR_LOGS':
+            return [];
         default:
             return state;
     }

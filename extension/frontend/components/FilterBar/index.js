@@ -9,11 +9,20 @@ export default function FilterBar(props) {
         onDisableTypeFilter,
         onRegexChange,
         types,
-        selectedTypes
+        selectedTypes,
+        onClear
     } = props;
 
     return (
         <div className="filter-bar">
+            <button
+                className="filter-bar__clear"
+                type="button"
+                title="Clear"
+                onClick={onClear}
+            >
+                <i className="fa fa-ban" aria-hidden="true"></i>
+            </button>
             <MessageRegexFilter
                 onChange={onRegexChange}
                 placeholder="RegEx"
@@ -29,6 +38,7 @@ export default function FilterBar(props) {
 }
 
 FilterBar.propTypes = {
+    onClear: PropTypes.func.isRequired,
     onEnableTypeFilter: PropTypes.func.isRequired,
     onDisableTypeFilter: PropTypes.func.isRequired,
     onRegexChange: PropTypes.func.isRequired,

@@ -1,4 +1,5 @@
 import './panel.css';
+import 'font-awesome/css/font-awesome.css';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';

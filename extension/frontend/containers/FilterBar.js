@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import {
     addMessageTypeFilter,
     removeMessageTypeFilter,
-    addRegexFilter
+    addRegexFilter,
+    clearLogs
 } from '../actions';
 import FilterBar from '../components/FilterBar';
 
@@ -30,6 +31,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+    onClear: () => dispatch(clearLogs()),
     onEnableTypeFilter: type => dispatch(addMessageTypeFilter(type)),
     onDisableTypeFilter: type => dispatch(removeMessageTypeFilter(type)),
     onRegexChange: pattern => dispatch(addRegexFilter(pattern))
