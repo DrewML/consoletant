@@ -27,6 +27,8 @@ chrome.runtime.onMessage.addListener((req, sender) => {
     const { id } = sender.tab;
     if (connections.has(id)) {
         connections.get(id).postMessage(req);
+    } else {
+        console.warn(`Couldn't find port for ${id}`);
     }
 
     return true;

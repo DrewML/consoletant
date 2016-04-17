@@ -1,34 +1,31 @@
 let nextId = 0;
 
-window.addEventListener('message', ({ data }) => {
-    if (data && data.consoletant) {
-        chrome.runtime.sendMessage({
-            stack: data.stack,
-            args: data.args,
-            type: data.type,
-            id: nextId++,
-            time: new Date().toLocaleTimeString()
-        });
-    }
-});
+window.addEventListener('message', ({ data: { consoletant, details } }) => {
+    if (!consoletant) return;
 
-window.addEventListener('error', data => {
-    chrome.runtime.sendMessage({
-        messageType: 'uncaughtException',
-        data: {
-            column: data.colno,
-            line: data.lineco,
-            filename: data.filename,
-            message: data.message
-        }
-    });
+    chrome.runtime.sendMessage(Object.assign({
+        id: nextId++,
+        time: new Date().toLocaleTimeString()
+    }, details));
 });
 
 runFnInPage(function() {
+    window.addEventListener('error', data => {
+        window.postMessage({
+            consoletant: true,
+            details: {
+                stack: data.error.stack,
+                args: [data.message],
+                type: 'error'
+            }
+        }, '*');
+    });
+
     const onLog = (logData) => {
-        window.postMessage(Object.assign({
-            consoletant: true
-        }, logData), '*');
+        window.postMessage({
+            consoletant: true,
+            details: logData
+        }, '*');
     };
 
     const targets = [
