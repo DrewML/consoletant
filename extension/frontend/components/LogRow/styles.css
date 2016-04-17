@@ -13,10 +13,12 @@
 .log-row__time {
     width: 7%;
     color: #AEAEAE;
+    vertical-align: top;
 }
 
 .log-row__message {
     width: 82%;
+    word-wrap: break-word;
 }
 
 .log-row__location {

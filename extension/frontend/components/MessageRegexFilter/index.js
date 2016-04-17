@@ -17,7 +17,7 @@ export default class MessageRegexFilter extends Component {
         const { placeholder } = this.props;
 
         return (
-            <div>
+            <div className="message-regex-filter">
                 <input
                     type="text"
                     placeholder={placeholder}
