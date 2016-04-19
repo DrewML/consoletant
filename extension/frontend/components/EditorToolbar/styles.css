@@ -1,0 +1,21 @@
+.editor-toolbar {
+    background-color: #f3f3f3;
+    height: 28px;
+    border-bottom: 1px solid #dadada;
+    padding: 0.3%;
+}
+
+.editor-toolbar__run {
+    border: none;
+    background: transparent;
+}
+
+.editor-toolbar__run:active,
+.editor-toolbar__run:focus {
+    outline: 0;
+}
+
+.editor-toolbar__run:hover {
+    cursor: pointer;
+    color: #737373;
+}
