@@ -44,5 +44,5 @@ export default class CodeArea extends Component {
 }
 
 CodeArea.propTypes = {
-    onChange: PropTypes.func
+    onChange: PropTypes.func.isRequired
 };
