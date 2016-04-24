@@ -8,6 +8,13 @@
     border-bottom: 1px solid #F4F2F2;
     line-height: 22px;
     padding: 0 .5%;
+    /* 
+        HACK: This transform addresses a nasty
+        Chrome rendering issue that I haven't been able
+        to resolve otherwise: http://stackoverflow.com/a/21947628
+
+    */
+    transform: translateZ(0);
 }
 
 .log-row__time {

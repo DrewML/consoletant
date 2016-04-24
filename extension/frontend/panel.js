@@ -1,15 +1,13 @@
 import './panel.css';
-import 'font-awesome/css/font-awesome.css';
+import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import React from 'react';
-import LogList from './containers/Logs';
-import FilterBar from './containers/FilterBar';
 import consoleApp from './reducers';
 import { addLogItem } from './actions';
 import parser from './stackparser';
 import { onMessage } from './connection';
+import App from './components/App';
 
 const store = createStore(consoleApp);
 
@@ -28,10 +26,7 @@ onMessage(({ stack, args, id, time, type }) => {
 
 render(
     <Provider store={store}>
-        <section>
-            <FilterBar />
-            <LogList />
-        </section>
+        <App />
     </Provider>,
-    document.querySelector('.app')
+    document.querySelector('.app-wrapper')
 );

@@ -20,6 +20,11 @@ export default class CodeArea extends Component {
         this.targetNode = ref;
     }
 
+    shouldComponentUpdate() {
+        // Rendering all handled by Ace directly
+        return false;
+    }
+
     componentDidMount() {
         const editor = this.editor = ace.edit(this.targetNode);
         editor.getSession().setMode('ace/mode/javascript');
@@ -29,7 +34,8 @@ export default class CodeArea extends Component {
     }
 
     onCodeEdit() {
-        this.props.onChange(this.editor.getValue());
+        console.log(this.editor.getValue());
+        // this.props.onChange(this.editor.getValue());
     }
 
     componentWillUnmount() {
